@@ -1,0 +1,8 @@
+@import '../../../styles/vars';
+
+.Button {
+  &.delete {
+    border: 2px solid $alert;
+    border-radius: 10px;
+  }
+}
