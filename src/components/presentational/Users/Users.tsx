@@ -1,6 +1,5 @@
 import React from 'react';
 import styles  from './Users.module.scss'
-import Hobbies from "../Hobbies/Hobbies";
 import { Users as Interface } from '../../../interfaces'
 import User from "../User/User";
 import AddUserForm from "../AddUserForm/AddUserForm";
@@ -27,6 +26,6 @@ const Users: React.FC<Interface> = ({
             </div>
         </div>
     );
-}
+};
 
 export default Users;

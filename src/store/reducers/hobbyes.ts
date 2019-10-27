@@ -4,8 +4,6 @@ import {
     PUT_HOBBY, GET_HOBBIES, DELETE_HOBBY
 } from '../../constants/storeActions'
 import { cloneDeep, set, get } from 'lodash'
-
-import { mergeWithArrayConcat } from '../../utils'
 /*
 * In real app I would get data for each user
 * separately using REQUEST, SUCCESS, FAILURE

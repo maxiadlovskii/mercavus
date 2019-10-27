@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 
 export const useErrorList = () => {
     const [errors, setErrors] = useState([]);
@@ -9,4 +9,4 @@ export const useErrorList = () => {
         setErrors([])
     }
     return {errors, addErrors, clearErrors}
-}
+};

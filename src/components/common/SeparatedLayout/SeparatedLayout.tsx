@@ -9,8 +9,8 @@ const SeparatedLayoutContainer: React.FC<SeparatedLayoutInterface> = ({ children
     const [proportions, setProportions] = useState({left: 0.5, right: 0.5});
     const [wrappersValues, setWrappersValues] = useState({ wrapperWidth: 0, wrapperLeft: 0});
     useEffect(()=> {
-        const wrapperWidth = wrapperRef.current && wrapperRef.current.getBoundingClientRect().width || 0;
-        const wrapperLeft = wrapperRef.current && wrapperRef.current.getBoundingClientRect().left || 0;
+        const wrapperWidth = (wrapperRef.current && wrapperRef.current.getBoundingClientRect().width) || 0;
+        const wrapperLeft = (wrapperRef.current && wrapperRef.current.getBoundingClientRect().left) || 0;
         setWrappersValues({wrapperWidth, wrapperLeft})
     }, []);
     const separatorRef = useRef<HTMLDivElement>(null);
@@ -46,6 +46,6 @@ const SeparatedLayoutContainer: React.FC<SeparatedLayoutInterface> = ({ children
         wrapperRef={wrapperRef}
         elements={children}
     />
-}
+};
 
 export default SeparatedLayoutContainer

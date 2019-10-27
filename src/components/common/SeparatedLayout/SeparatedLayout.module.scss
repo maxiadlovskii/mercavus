@@ -1,0 +1,17 @@
+@import "../../../styles/vars";
+
+.wrapper {
+  min-width: 800px;
+  height: 600px;
+  display: flex;
+  background-color: $gray;
+}
+
+.separator {
+  cursor: move;
+  background-color: $dark;
+}
+.left, .right {
+  min-width: fit-content;
+  overflow-y: scroll;
+}

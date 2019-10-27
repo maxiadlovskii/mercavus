@@ -1,5 +1,3 @@
-import { mergeWith, isArray } from 'lodash'
-
 export const additionsClasses = (additions: string[], style: {[key: string]: string}) =>
     additions.reduce((res: string[], addition: string) => {
         return [...res, style[addition]]
@@ -15,7 +13,7 @@ export const getFormValues = (elements: any ) => {
         }
     }
     return res
-}
+};
 
 export const validator = (values: { [key: string]: any}) => {
     const { name, year, passionLevel } = values;
@@ -37,15 +35,9 @@ export const validator = (values: { [key: string]: any}) => {
      }, []);
 
     return !!errors.length ? errors : null
-}
+};
 
 export const generateId = () => {
     return `${Math.random()}_${new Date().toDateString()}`
-}
+};
 
-export const mergeWithArrayConcat = (...rest: any) =>
-    mergeWith(rest, (objValue: any, srcValue: any) => {
-        if (isArray(objValue)) {
-            return objValue.concat(srcValue)
-        }
-    });

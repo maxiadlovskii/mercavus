@@ -3,7 +3,7 @@ import styles  from './Hobbies.module.scss'
 import { Hobbies as HobbiesInterface } from '../../../interfaces'
 import Hobby from '../Hobby/Hobby'
 import NoContent from "../../common/NoContent/NoContent";
-import AddHobbyForm from "../AddNobbyForm/AddHobbyForm";
+import AddHobbyForm from "../AddHobbyForm/AddHobbyForm";
 
 const Hobbies: React.FC<HobbiesInterface> = ({
                                                  hobbiesList,
