@@ -4,17 +4,18 @@ import styles  from './SeparatedLayout.module.scss'
 
 const SeparatedLayoutView: React.FC<SeparatedLayoutProps> = ({
                                                              onMouseOnSeparator,
-                                                             proportions,
+                                                             widths,
                                                              wrapperRef,
                                                              separatorRef,
-                                                             elements
+                                                             elements,
+                                                             separatorWidth
 }) => {
     return (
         <div ref={wrapperRef}
              className={styles['wrapper']}>
             <div
                 className={styles['left']}
-                style={{width: `${proportions.left*100}%`}}
+                style={{width: widths.left}}
             >
                 {elements && elements[0]}
             </div>
@@ -22,9 +23,12 @@ const SeparatedLayoutView: React.FC<SeparatedLayoutProps> = ({
                 className={styles['separator']}
                 onMouseDown={onMouseOnSeparator}
                 ref={separatorRef}
+                style={{
+                    width: separatorWidth
+                }}
             />
             <div
-                style={{width: `${proportions.right*100}%`}}
+                style={{width: widths.right}}
                 className={styles['right']}
             >
                 {elements && elements[1]}

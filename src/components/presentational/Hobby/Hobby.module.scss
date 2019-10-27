@@ -5,7 +5,7 @@
 */
 .wrapper {
   @include item-styles;
-  width: 100%;
+  cursor: initial;
   display: flex;
   flex-flow: row nowrap;
 }

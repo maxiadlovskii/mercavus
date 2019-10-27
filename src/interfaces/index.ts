@@ -33,13 +33,14 @@ export interface SeparatedLayout {
 
 export interface SeparatedLayoutProps {
     onMouseOnSeparator(event: SyntheticEvent): void,
-    proportions: {
-        left: number,
-        right: number
+    widths: {
+        left: string,
+        right: string
     },
     separatorRef: any,
     wrapperRef: any,
-    elements: ReactNode[]
+    elements: ReactNode[],
+    separatorWidth: string
 }
 
 export interface Button {
@@ -52,7 +53,8 @@ export interface Input {
     onChange?(event: SyntheticEvent): void,
     placeholder?: string,
     additions?: string[],
-    name: string
+    name: string,
+    type?: 'text' | 'number'
 }
 
 export interface HobbyItem {
@@ -69,6 +71,9 @@ export interface UserItem {
 export interface Hobbies {
     hobbiesList: Hobby[],
     onDelete(id: string): void | undefined,
+    onAddHobby(e: FormEvent): void,
+    errors: string[],
+    currentUser: string
 }
 
 export interface Users {

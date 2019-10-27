@@ -1,5 +1,7 @@
-import * as storeActions from '../../constants/storeActions'
+import { PUT_USER } from "../../constants/storeActions";
+import {User} from "../../interfaces";
 
-export function getUserList() {
-
-}
+export const putUser = (user: User) => ({
+    type: PUT_USER,
+    payload: user
+});

@@ -3,11 +3,14 @@ import * as  hobbies from '../store/actions/hobbies'
 import * as  users from '../store/actions/users'
 
 export interface HobbiesContainer {
-    hobbies: HobbiesReducer
+    hobbies: HobbiesReducer,
+    putHobbies: typeof hobbies.putHobbies,
+    deleteHobbies: typeof hobbies.deleteHobbies
 }
 
 export interface UsersContainer {
     users: UsersReducer,
     hobbies: HobbiesReducer,
-    getUserHobbies: typeof hobbies.getUserHobbies
+    getUserHobbies: typeof hobbies.getUserHobbies,
+    putUser: typeof users.putUser
 }

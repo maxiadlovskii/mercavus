@@ -1,6 +1,7 @@
 import { UsersReducer } from '../../interfaces'
+import { UserActionsInterface } from '../../interfaces/actionCreator'
 import {
-    REQUEST, SUCCESS, FAILURE, GET_USERS, GET_HOBBIES
+    PUT_USER
 } from '../../constants/storeActions'
 
 const initialState: UsersReducer = {
@@ -15,16 +16,15 @@ const initialState: UsersReducer = {
 
 export function usersReducer(
     state = initialState,
-    action: any
+    action: UserActionsInterface
 ): UsersReducer{
-    const { type } = action;
+    const { type, payload } = action;
     switch (type) {
-        case `${GET_USERS}${REQUEST}`:
-            return state;
-        case `${GET_USERS}${FAILURE}`:
-            return state;
-        case `${GET_USERS}${SUCCESS}`:
-            return state;
+        case PUT_USER:
+            return {
+                ...state,
+                collection: [...state.collection, payload]
+            };
         default:
             return state
     }

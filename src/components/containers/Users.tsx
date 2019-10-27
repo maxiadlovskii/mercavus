@@ -1,26 +1,39 @@
-import React, {FormEvent, useState} from 'react';
+import React from 'react';
 import Users from '../presentational/Users/Users'
 import {AppState} from "../../store";
 import {connect} from "react-redux";
 import {UsersContainer as UsersContainerInterface} from "../../interfaces/containers";
 import { getUserHobbies } from '../../store/actions/hobbies'
-import { getFormValues } from '../../utils'
+import { putUser } from '../../store/actions/users'
+import {generateId, getFormValues, validator} from '../../utils'
+import { useErrorList } from '../../hooks'
 
 const UsersContainer: React.FC<UsersContainerInterface> = ({
                                                       users: { collection },
                                                       hobbies: { currentUser },
-                                                      getUserHobbies
+                                                      getUserHobbies,
+                                                      putUser
 }) => {
-    const [errors, setErrors] = useState([]);
+    const { errors, addErrors, clearErrors } = useErrorList();
     const onUserSelect = (id: string) => {
         getUserHobbies(id)
     };
     const onAddUser = (e: any) => {
         e.preventDefault();
-        console.log(e.target.elements, e.target.elements.length,  e.target.elements[0])
+        clearErrors();
         const elements = e.target.elements;
         const res = getFormValues(elements);
-
+        const errors = validator(res);
+        if(errors && Array.isArray(errors)){
+            addErrors(errors)
+        } else {
+            const id = generateId();
+            const name = res.name;
+            putUser({
+                id,
+                name
+            })
+        }
     };
     return <Users
         onAddUser={onAddUser}
@@ -38,6 +51,7 @@ const mapStateToProps = (state: AppState) => ({
 export default connect(
     mapStateToProps,
     {
-        getUserHobbies
+        getUserHobbies,
+        putUser
     }
 )(UsersContainer)

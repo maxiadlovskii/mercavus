@@ -32,10 +32,16 @@ const SeparatedLayoutContainer: React.FC<SeparatedLayoutInterface> = ({ children
         document.addEventListener("mousemove", onMouseMove);
         document.addEventListener("mouseup", onMouseUp);
     };
+    const separatorWidth = 6;
+    const widths ={
+        left: `calc(${proportions.left*100}% - ${separatorWidth/2}px)`,
+        right: `calc(${proportions.right*100}% - ${separatorWidth/2}px)`,
+    };
 
     return <SeparatedLayoutView
         onMouseOnSeparator={onMouseOnSeparator}
-        proportions={proportions}
+        widths={widths}
+        separatorWidth={`${separatorWidth}px`}
         separatorRef={separatorRef}
         wrapperRef={wrapperRef}
         elements={children}

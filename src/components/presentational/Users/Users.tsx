@@ -10,7 +10,7 @@ const Users: React.FC<Interface> = ({
                                              onUserSelect,
                                              currentUser,
                                              onAddUser,
-                                            errors
+                                             errors
 }) => {
     return (
         <div className={styles['wrapper']}>

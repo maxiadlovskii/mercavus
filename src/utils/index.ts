@@ -1,5 +1,4 @@
-import {Simulate} from "react-dom/test-utils";
-import error = Simulate.error;
+import { mergeWith, isArray } from 'lodash'
 
 export const additionsClasses = (additions: string[], style: {[key: string]: string}) =>
     additions.reduce((res: string[], addition: string) => {
@@ -20,20 +19,33 @@ export const getFormValues = (elements: any ) => {
 
 export const validator = (values: { [key: string]: any}) => {
     const { name, year, passionLevel } = values;
-    const passionLevels = ['very high', 'middle', 'low', 'high'];
+    const passionLevels = ['very high', 'medium', 'low', 'high'];
     const validations: {
         [key: string]: any
     } = {
-        name: () => !name.length ? 'Input name' : null,
-        year: () => !year.length ? 'Input year' : null,
+        name: () => !name.length ? 'Please, input name' : null,
+        year: () => !year.length ? 'Please, input year' : null,
         passionLevel: () => !passionLevel.length
-            ? 'Input passionLevel'
-            : !passionLevels.includes(passionLevel)
-                ? 'Set one of \'Very high\', \'Middle\', \'Low\', \'High\''
+            ? 'Please, input passionLevel'
+            : !passionLevels.includes(passionLevel.toLowerCase())
+                ? 'Set one of \'Very high\', \'Medium\', \'Low\', \'High\''
                 : null
-     }
-     return Object.keys(values).reduce( (res: any[], key) => {
+     };
+     const errors = Object.keys(values).reduce( (res: any[], key) => {
             const error = validations[key]();
             return error ? [...res, error] : res
-     }, [])
+     }, []);
+
+    return !!errors.length ? errors : null
 }
+
+export const generateId = () => {
+    return `${Math.random()}_${new Date().toDateString()}`
+}
+
+export const mergeWithArrayConcat = (...rest: any) =>
+    mergeWith(rest, (objValue: any, srcValue: any) => {
+        if (isArray(objValue)) {
+            return objValue.concat(srcValue)
+        }
+    });

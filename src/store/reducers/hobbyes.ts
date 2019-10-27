@@ -1,9 +1,11 @@
-import { HobbiesReducer } from '../../interfaces'
+import {HobbiesReducer, Hobby} from '../../interfaces'
 import { HobbiesActionsInterface } from '../../interfaces/actionCreator'
 import {
-    REQUEST, SUCCESS, FAILURE, GET_USERS, GET_HOBBIES
+    PUT_HOBBY, GET_HOBBIES, DELETE_HOBBY
 } from '../../constants/storeActions'
+import { cloneDeep, set, get } from 'lodash'
 
+import { mergeWithArrayConcat } from '../../utils'
 /*
 * In real app I would get data for each user
 * separately using REQUEST, SUCCESS, FAILURE
@@ -38,7 +40,7 @@ const initialState: HobbiesReducer = {
                 id: '2',
                 passionLevel: 'Low',
                 name: 'Work',
-                year: 2001,
+                year: 2002,
                 userId: '2'
             }],
         '3': [{
@@ -52,13 +54,13 @@ const initialState: HobbiesReducer = {
                 id: '2',
                 passionLevel: 'Low',
                 name: 'Work',
-                year: 2001,
+                year: 2003,
                 userId: '3'
             }]
     },
     isFailed: false,
     isFetching: false,
-    currentUser: '1'
+    currentUser: ''
 };
 
 export function hobbiesReducer(
@@ -70,8 +72,20 @@ export function hobbiesReducer(
         case GET_HOBBIES:
             return {
                 ...state,
-                currentUser: payload
+                currentUser: payload.userId
             };
+        case PUT_HOBBY:
+            const pathToAdd = ['collection', payload.userId];
+            return set(cloneDeep(state), pathToAdd, [...get(state, pathToAdd), payload]);
+        case DELETE_HOBBY:
+            const pathToDel = ['collection', payload.userId];
+            const update = get(state, pathToDel)
+                .filter( (item: Hobby)=> item.id !== payload.id);
+            return set(
+                cloneDeep(state),
+                pathToDel,
+                update
+            );
         default:
             return state
     }
