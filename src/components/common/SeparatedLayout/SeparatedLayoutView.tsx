@@ -14,7 +14,7 @@ const SeparatedLayoutView: React.FC<SeparatedLayoutProps> = ({
              className={styles['wrapper']}>
             <div
                 className={styles['left']}
-                style={{flexGrow: proportions.left}}
+                style={{width: `${proportions.left*100}%`}}
             >
                 {elements && elements[0]}
             </div>
@@ -24,7 +24,7 @@ const SeparatedLayoutView: React.FC<SeparatedLayoutProps> = ({
                 ref={separatorRef}
             />
             <div
-                style={{flexGrow: proportions.right}}
+                style={{width: `${proportions.right*100}%`}}
                 className={styles['right']}
             >
                 {elements && elements[1]}

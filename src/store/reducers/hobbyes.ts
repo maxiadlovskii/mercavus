@@ -1,7 +1,15 @@
 import { HobbiesReducer } from '../../interfaces'
+import { HobbiesActionsInterface } from '../../interfaces/actionCreator'
 import {
     REQUEST, SUCCESS, FAILURE, GET_USERS, GET_HOBBIES
 } from '../../constants/storeActions'
+
+/*
+* In real app I would get data for each user
+* separately using REQUEST, SUCCESS, FAILURE
+* actions and switching isFailed, isFetching
+*
+* */
 
 const initialState: HobbiesReducer = {
     collection: {
@@ -50,21 +58,20 @@ const initialState: HobbiesReducer = {
     },
     isFailed: false,
     isFetching: false,
-    currentUser: ''
+    currentUser: '1'
 };
 
 export function hobbiesReducer(
     state = initialState,
-    action: any
+    action: HobbiesActionsInterface
 ): HobbiesReducer{
-    const { type } = action;
+    const { type, payload } = action;
     switch (type) {
-        case `${GET_HOBBIES}${REQUEST}`:
-            return state;
-        case `${GET_HOBBIES}${FAILURE}`:
-            return state;
-        case `${GET_HOBBIES}${SUCCESS}`:
-            return state;
+        case GET_HOBBIES:
+            return {
+                ...state,
+                currentUser: payload
+            };
         default:
             return state
     }

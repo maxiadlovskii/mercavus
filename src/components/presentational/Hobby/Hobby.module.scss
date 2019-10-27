@@ -1,0 +1,18 @@
+@import "../../../styles/vars";
+/*
+    We could use display table for Hobbies list
+     table-row for  .wrapper and table-cell for .item
+*/
+.wrapper {
+  @include item-styles;
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.item {
+  display: flex;
+  flex-flow: row nowrap;
+  flex-grow: 1;
+  flex-basis: 0;
+}

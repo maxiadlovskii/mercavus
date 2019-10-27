@@ -1,0 +1,7 @@
+@import "../../../styles/vars";
+.wrapper {
+  @include item-styles;
+}
+.active {
+  border: 2px solid $dark;
+}

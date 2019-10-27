@@ -1,4 +1,4 @@
-import {SyntheticEvent, ReactNode} from "react";
+import {SyntheticEvent, ReactNode, FormEvent} from "react";
 
 export interface User {
     id: string,
@@ -43,12 +43,47 @@ export interface SeparatedLayoutProps {
 }
 
 export interface Button {
-    onClick(event: SyntheticEvent): void | undefined,
-    text: string | ReactNode | undefined,
-    additions: string[] | undefined
+    onClick?(event: SyntheticEvent): void,
+    text?: string | ReactNode | undefined,
+    additions?: string[],
+    type?: 'submit' | 'reset' | 'button',
+}
+export interface Input {
+    onChange?(event: SyntheticEvent): void,
+    placeholder?: string,
+    additions?: string[],
+    name: string
 }
 
 export interface HobbyItem {
     hobby: Hobby,
-    onClick(event: SyntheticEvent): void | undefined,
+    onDelete(event: SyntheticEvent): void | undefined,
+}
+
+export interface UserItem {
+    user: User,
+    isActive: boolean,
+    onUserSelect(id: string): void | undefined,
+}
+
+export interface Hobbies {
+    hobbiesList: Hobby[],
+    onDelete(id: string): void | undefined,
+}
+
+export interface Users {
+    usersList: User[],
+    onUserSelect(id: string): void | undefined,
+    onAddUser(e: FormEvent): void,
+    currentUser: string,
+    errors: string[]
+}
+
+export interface ErrorList {
+    list: string[]
+}
+
+export interface AddUserForm {
+    onSubmit(e: FormEvent): void,
+    errors: string[]
 }

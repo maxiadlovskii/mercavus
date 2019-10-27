@@ -1,11 +1,32 @@
 import React from 'react';
-import styles  from './User.module.scss'
+import styles  from './Users.module.scss'
 import Hobbies from "../Hobbies/Hobbies";
+import { Users as Interface } from '../../../interfaces'
+import User from "../User/User";
+import AddUserForm from "../AddUserForm/AddUserForm";
 
-const User: React.FC = () => {
+const Users: React.FC<Interface> = ({
+                                             usersList,
+                                             onUserSelect,
+                                             currentUser,
+                                             onAddUser,
+                                            errors
+}) => {
     return (
-        <div>{ 'fdfdfdf'}</div>
+        <div className={styles['wrapper']}>
+            <AddUserForm onSubmit={onAddUser} errors={errors}/>
+            <div className={styles['list']}>
+                {
+                    usersList.map(user =>
+                        <User
+                            key={`user_${user.id}`}
+                            user={user} onUserSelect={onUserSelect}
+                            isActive={currentUser === user.id}
+                        /> )
+                }
+            </div>
+        </div>
     );
 }
 
-export default User;
+export default Users;

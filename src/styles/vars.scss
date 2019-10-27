@@ -1,3 +1,11 @@
 $dark: #282c34;
 $gray: #eeeeee;
 $alert: red;
+$azure: azure;
+
+@mixin item-styles {
+  margin: 5px;
+  padding: 5px;
+  background-color: $azure;
+  cursor: pointer;
+}

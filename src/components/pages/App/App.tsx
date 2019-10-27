@@ -8,8 +8,8 @@ const App: React.FC = () => {
   return (
     <div className={styles['App']}>
         <SeparatedLayout>
+            <UsersContainer/>
             <HobbiesContainer/>
-            <UsersContainer />
         </SeparatedLayout>
     </div>
   );

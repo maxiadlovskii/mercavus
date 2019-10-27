@@ -1,18 +1,21 @@
 import React from 'react';
-import {Button as ButtonInterface} from "../../../interfaces";
+import {Button as Interface} from "../../../interfaces";
 import styles from './Button.module.scss';
 import classNames from 'classnames'
 import {additionsClasses} from "../../../utils";
 
-const Button: React.FC<ButtonInterface> =  ({
+const Button: React.FC<Interface> =  ({
                                                 text,
                                                 additions = [],
                                                 onClick,
-                                                children
+                                                children,
+                                                type = undefined
 }) => {
     return <button
-        className={classNames('Button', additionsClasses(additions, styles))}
-        onClick={onClick}>{text || children}
+        className={classNames(styles['Button'], additionsClasses(additions, styles))}
+        onClick={onClick}
+        type={type}
+    >{text || children}
     </button>
 }
 
